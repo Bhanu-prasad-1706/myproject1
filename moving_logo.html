@@ -1,0 +1,46 @@
+                                                                                                                                                                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Logo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #58a6ff;
+            transform-origin: 50% 33.33%;
+            transition: transform 0.1s ease-out;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo" id="logo"></div>
+
+    <script>
+        const logo = document.getElementById('logo');
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const angle = Math.atan2(mouseY - centerY, mouseX - centerX) * (180 / Math.PI) + 90;
+            logo.style.transform = `rotate(${angle}deg)`;
+        });
+    </script>
+</body>
+</html>
